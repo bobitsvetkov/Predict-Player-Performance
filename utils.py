@@ -9,5 +9,6 @@ def calculate_custom_score(df):
         + (df["Games Played"] * 2)
         + (df["Championships"] * 50)
         + (df["Playoff Appearances"] * 25)
-        + df["Initial_Score"]
+        + (df["Chevrons/game"] * 30)
+        + (df["K/D ratio"] * 100)
     )
