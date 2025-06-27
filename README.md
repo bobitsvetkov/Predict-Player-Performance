@@ -22,7 +22,7 @@ This project showcases a full ML lifecycle:
 
 ## 🔁 Pipeline Architecture
 
-
+```
 graph TD
 A[Raw Player Data (JSON)] --> B[Preprocessing & Feature Engineering]
 
@@ -35,7 +35,7 @@ G --> H[Model Evaluation]
 G --> I[Score Predictions]
 
 I --> J[Streamlit Frontend]
-
+```
 ---
 
 ## ⚙️ Features
