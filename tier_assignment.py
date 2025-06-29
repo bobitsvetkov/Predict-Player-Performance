@@ -20,5 +20,5 @@ def assign_tiers(df, score_col="Predicted_Score"):
                 return tier_names[i]
         return tier_names[-1]
 
-    df["Tier_Assigned"] = df[score_col].apply(tier_func)
+    df["Tier"] = df[score_col].apply(tier_func)
     return df
