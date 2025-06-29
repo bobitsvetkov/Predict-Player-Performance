@@ -2,43 +2,57 @@ import pandas as pd
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, r2_score
-from utils import calculate_custom_score, format_decimal_to_percent_columns
+from utils import format_decimal_to_percent_columns
 from tier_assignment import assign_tiers
 
 
-def predict_score_model(
+def predict_battle_performance(
     input_file="player_stats_cleaned.json", output_file="player_data.json"
 ):
     df = pd.read_json(input_file)
     df.fillna(0, inplace=True)
+    skill = df["K/D ratio"] * df["Chevrons/game"]
+    skill_norm = skill / skill.max()
+    win_norm = df["Win %"] / df["Win %"].max()
+    playoff_rate = df["Playoff Rate"] / df["Playoff Rate"].max()
+    penalty = ((skill_norm - win_norm - playoff_rate).clip(lower=0) ** 2) * 1.5
 
-    df["Battle_Performance"] = df["K/D ratio"] * df["Chevrons/game"]
+    df["Battle_Performance"] = (
+        5 * skill_norm + 10 * win_norm + 5 * playoff_rate - 10 * penalty
+    )
+
+    # Normalize Battle_Performance to a 0-100 scale based on min and max scores
+    min_score = df["Battle_Performance"].min()
+    max_score = df["Battle_Performance"].max()
+
+    df["Battle_Performance"] = (
+        (df["Battle_Performance"] - min_score) / (max_score - min_score)
+    ) * 100
+
+    # ensure no negative or >100 scores after normalization
+    df["Battle_Performance"] = df["Battle_Performance"].clip(lower=0, upper=100)
+
     df["Win_Playoff_Interaction"] = (df["Win %"] * 100) * (df["Playoff Rate"] * 100)
     df["Playoff_Championship_Interaction"] = (
         df["Playoff Appearances"] * df["Championships"]
     )
 
-    df["Custom_Score"] = calculate_custom_score(df)
-
     features = [
-        "Championships",
-        "Playoff Rate",
         "Chevrons/game",
+        "Win %",
+        "Playoff Rate",
         "K/D ratio",
+        "Championships",
         "Playoff Appearances",
-        "Runner-ups",
-        "Third Places",
-        "Games Played",
-        "Battle_Performance",
         "Win_Playoff_Interaction",
         "Playoff_Championship_Interaction",
     ]
 
     X = df[features]
-    y = df["Custom_Score"]
+    y = df["Battle_Performance"]
 
     print(f"Dataset size: {len(df)} players")
-    print("Custom_Score distribution:")
+    print("Battle_Performance distribution:")
     print(y.describe())
 
     X_train, X_test, y_train, y_test = train_test_split(
@@ -81,7 +95,7 @@ def predict_score_model(
     df.loc[X_test.index, "Predicted_Score_Validation"] = y_pred
 
     df["Predicted_Score"] = best_model.predict(X)
-
+    df["Predicted_Score"] = df["Predicted_Score"].round(2)
     df = assign_tiers(df, score_col="Predicted_Score")
     df = format_decimal_to_percent_columns(df)
     df_sorted = df.sort_values(by="Predicted_Score", ascending=False)
@@ -93,5 +107,5 @@ def predict_score_model(
 
 
 if __name__ == "__main__":
-    df_result = predict_score_model()
+    df_result = predict_battle_performance()
     print("Model training, prediction and tier assignment complete.")
