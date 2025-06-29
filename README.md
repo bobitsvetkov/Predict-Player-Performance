@@ -7,75 +7,72 @@ I built this project in order to start getting into ML/Building ML pipelines in 
 
 ## 📌 Overview
 
-This project showcases a full ML lifecycle:
+This project demonstrates a complete machine learning pipeline for evaluating and ranking tournament players based on performance metrics. It integrates data engineering, percentile-based tiering, regression modeling, and interactive visualization.
 
-- 📊 **Data ingestion** from structured JSON
-- 🛠️ **Feature engineering** including tier-based scoring
-- 🧪 **Tier assignment** using unsupervised learning (K-Means clustering)
-- 🌲 **Model training** using Random Forest regression
-- ✅ **Evaluation** via Mean Squared Error (MSE)
-- 🎯 **Prediction** of player scores
-- 🌐 **Deployment** on Azure
-- 📈 **Interactive dashboard** displaying the data via Streamlit
+- 📥 **Data Ingestion** from structured JSON inputs  
+- 🧱 **Feature Engineering** with custom performance metrics  
+- 🏷️ **Tier Assignment** based on percentiles of predicted scores  
+- 🌲 **Supervised Learning** using Random Forest Regressor to predict player scores  
+- 📊 **Model Evaluation** using Mean Squared Error (MSE) and R²  
+- 🎯 **Score Prediction** and tier-based ranking  
+- 🌐 **Deployment** on Azure App Service  
+- 📈 **Interactive Streamlit Dashboard** for player insights and rankings
 
 ---
 
 ## 🔁 Pipeline Architecture
 
-```
-graph TD
-A[Raw Player Data (JSON)] --> B[Preprocessing & Feature Engineering]
+1. 🔄 **Data Preprocessing** & Feature Engineering  
+2. 🏷️ **Tier Assignment** using score percentiles (no clustering)  
+3. 🧮 **Battle Performance Score** Calculation  
+4. 🧪 **Train/Test Split** & Feature Matrix Construction  
+5. 🌲 **Random Forest Regression** (optimized with Grid Search)
+    - 📉 Model Evaluation using **MSE** and **R²**
+    - 🎯 **Score Prediction** for All Players  
+6. 📊 **Streamlit Dashboard** for displaying training result
 
-B --> C[Unsupervised K-Means Clustering]
-C --> D[Cluster to Tier Mapping]
-D --> E[Convert Tiers to Scores]
-
-E --> F[Feature Matrix + Scores] --> G[Train Random Forest Regressor]
-G --> H[Model Evaluation]
-G --> I[Score Predictions]
-
-I --> J[Streamlit Frontend]
-```
 ---
 
 ## ⚙️ Features
 
-- Clusters players into performance tiers using K-Means on core stats
-- Maps each cluster to a tier label (e.g., Praetorian, Legionary) based on Win%
-- Converts tiers into numerical scores as part of a hybrid scoring system
-- Trains a machine learning model to predict custom performance scores
-- Visualizes results through an interactive web interface
-- Deploys the entire pipeline to the cloud with Azure App Service
+- Calculates a **custom Battle Performance Score** combining K/D ratio, chevrons, win rate, and playoff participation
+- Trains a **Random Forest regression model** to predict scores based on key features  
+- Assigns **performance tiers** (e.g., Champion, Good Player) using **score percentiles** 
+- Implements a **hybrid scoring system** that blends skill and outcome-based metrics  
+- Provides an **interactive web interface** for player comparison and score breakdown  
 
 ---
 
 ## 🎯 Tier Assignment Model
 
-Players are grouped into 4 tiers using K-Means clustering, an unsupervised learning algorithm applied to standardized performance features like Win %, K/D ratio, and playoff appearances.
+Players are assigned to performance tiers based on their **Battle Performance Score percentiles** rather than clustering.
 
-The resulting clusters are then ranked by average Win % and mapped to named tiers:
+The score is computed using a custom formula that weights skill (K/D ratio, chevrons per game) and outcomes (Win %, Playoff Rate), with penalties for bad performance.
 
-**Cluster → Tier Mapping (example):**
-- Cluster with highest Win % → Praetorian
-- Next → Legionary
-- Next → Hastati
-- Lowest → Pleb
+Tiers are mapped from score percentiles:
 
-Each tier is then converted to an initial numeric score used as input to the supervised regression model.
+**Percentile → Tier Mapping (example):**
+- Top 10% → Champion
+- Next 20% → Good Player
+- Next 30% → Above Average
+- Bottom 40% → Average
+
+These tiers provide intuitive performance labels and are used in visualizations to help compare players more easily.
 
 ---
 
 ## 📊 Model Performance
 
-- **ML Model:** RandomForestRegressor
-- **Test Set MSE:** 3292.92
+- **ML Model:** RandomForestRegressor (tuned with GridSearchCV, 5-fold cross-validation)
+- **Test Set MSE:** 13.21
 - **Dataset:** 75 players × 5–8 performance stats
+- **R²:**  0.965
 
 **Score distribution:**
-- Mean: 808
-- Min: 26
-- Max: 1730
-- Std Dev: ~480
+- Mean: 56.84
+- Min: 0.00
+- Max: 100.00
+- Standard Deviation: 23.51
 
 ---
 
@@ -84,7 +81,7 @@ Each tier is then converted to an initial numeric score used as input to the sup
 ```bash
 # Clone the repo
 git clone https://github.com/yourusername/player-ml-app.git
-cd player-ml-app
+cd Predict-Player-Performance
 
 # Create a virtual environment
 python -m venv venv
@@ -102,7 +99,5 @@ PS: In order to showcase the progression of this mini project, I have separate j
 
 Step 1 => Preprocess the raw json data and save it in a new json file 
 
-Step 2 => Generate a second json file with players put into tiers via unsupervised learning 
-
-Step 3 => Generate a third json file with final result => use supervised learning to predict the player's score
+Step 2 => Train the model and save the data in a separate json file: player_data.json
 ```
