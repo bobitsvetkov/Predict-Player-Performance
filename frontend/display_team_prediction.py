@@ -128,7 +128,8 @@ def show_team_analysis():
         ].iloc[0]
 
         with st.expander(
-            f"Detailed Analysis for {selected_team_row['team_name']} ({selected_team_row['tier']}-Tier)"
+            f"Detailed Analysis for {selected_team_row['team_name']} ({selected_team_row['tier']}-Tier)",
+            expanded = True
         ):
             st.markdown(f"**Team Name:** {selected_team_row['team_name']}")
             st.markdown(f"**Assigned Tier:** {selected_team_row['tier']}")
@@ -149,7 +150,7 @@ def show_team_analysis():
             tier_avg_data = tier_avg_data.sort_values("tier")
 
 
-            st.markdown("#### Quick Stats Comparison vs Tier Average")
+            st.markdown("#### Comparison vs Tier Average")
             selected_tier_avg = tier_avg_data[tier_avg_data["tier"] == selected_team_row["tier"]].iloc[0]
             
             col1, col2, col3 = st.columns(3)
