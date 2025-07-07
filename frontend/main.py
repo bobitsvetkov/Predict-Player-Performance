@@ -10,7 +10,6 @@ page = st.sidebar.selectbox(
     [
         "Player Prediction",
         "Player Comparison",
-        "Team Tier List",
         "Team Prediction",
         "Team Comparison",
     ],
