@@ -27,24 +27,22 @@ def show_elo_statistics(elo_stats, df):
     col1, col2 = st.sidebar.columns(2)
 
     with col1:
-        st.metric("Total Teams", elo_stats["total_teams"])
-        st.metric("Average ELO", f"{elo_stats['avg_elo']:.1f}")
-        st.metric("Median ELO", f"{elo_stats['median_elo']:.1f}")
-        st.metric("Average Win Rate", f"{df['win_rate'].mean():.1f}%")
+        st.metric("Teams", elo_stats["total_teams"])
+        st.metric("Avg ELO", f"{elo_stats['avg_elo']:.0f}")
+        st.metric("Med ELO", f"{elo_stats['median_elo']:.0f}")
+        st.metric("Avg Win %", f"{df['win_rate'].mean():.1f}%")
 
     with col2:
-        st.metric("Min ELO", f"{elo_stats['min_elo']:.1f}")
-        st.metric("Max ELO", f"{elo_stats['max_elo']:.1f}")
-        st.metric("ELO Range", f"{elo_stats['elo_range']:.1f}")
-        st.metric("Average Matches", f"{df['total_matches'].mean():.1f}")
+        st.metric("Min ELO", f"{elo_stats['min_elo']:.0f}")
+        st.metric("Max ELO", f"{elo_stats['max_elo']:.0f}")
+        st.metric("Range", f"{elo_stats['elo_range']:.0f}")
+        st.metric("Avg Games", f"{df['total_matches'].mean():.0f}")
 
-    st.sidebar.metric("Standard Deviation", f"{elo_stats['std_elo']:.1f}")
+    st.sidebar.metric("Std Dev", f"{elo_stats['std_elo']:.0f}")
 
 
 def show_team_analysis():
     """Main function to display team analysis dashboard"""
-    st.title("🎯 Team Skill Prediction Dashboard")
-
     data = load_elo_data()
     if data is None:
         return
@@ -52,8 +50,6 @@ def show_team_analysis():
     df = pd.DataFrame(data["team_predictions"])
 
     show_elo_statistics(data["elo_statistics"], df)
-
-    st.header("🔍 Game Filter")
 
     min_matches = st.slider(
         "Minimum number of matches",
@@ -74,8 +70,6 @@ def show_team_analysis():
         "Exceptional": "#8E5FBF",
         "Legendary": "#FFD700",
     }
-
-    st.subheader("📋 Team Rankings")
 
     columns_to_show = [
         "team_name",
@@ -115,8 +109,6 @@ def show_team_analysis():
     )
 
     st.dataframe(styled_df, use_container_width=True)
-
-    st.subheader("📈 ELO Rating vs Win Rate by Skill Level")
 
     fig_scatter = px.scatter(
         filtered_df,
