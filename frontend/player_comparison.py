@@ -13,7 +13,7 @@ def percent_str_to_float(s):
 
 
 def show_player_comparison():
-    st.title("🧙 Player vs Player Comparison")
+    st.title("Player vs Player Comparison")
 
     df = pd.read_json("data/player_data.json")
 
