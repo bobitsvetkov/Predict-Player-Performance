@@ -4,141 +4,207 @@ import plotly.express as px
 import json
 
 
-def load_elo_data():
-    """Load ELO predictions data from JSON file"""
+@st.cache_data
+def load_teams(filename="data/team_tiers.json"):
     try:
-        with open("data/elo_skill_predictions.json", "r") as f:
+        with open(filename, "r") as f:
             data = json.load(f)
         return data
     except FileNotFoundError:
         st.error(
-            "ELO predictions file not found. Please run the ELO prediction model first."
+            f"Error: Data file '{filename}' not found. Please ensure it's in the correct location."
         )
-        return None
-    except json.JSONDecodeError:
-        st.error("Error reading ELO predictions file. Please check the file format.")
-        return None
-
-
-def show_elo_statistics(elo_stats, df):
-    """Display ELO statistics in the sidebar"""
-    st.sidebar.header("📊 Elo Statistics")
-
-    col1, col2 = st.sidebar.columns(2)
-
-    with col1:
-        st.metric("Teams", elo_stats["total_teams"])
-        st.metric("Avg ELO", f"{elo_stats['avg_elo']:.0f}")
-        st.metric("Med ELO", f"{elo_stats['median_elo']:.0f}")
-        st.metric("Avg Win %", f"{df['win_rate'].mean():.1f}%")
-
-    with col2:
-        st.metric("Min ELO", f"{elo_stats['min_elo']:.0f}")
-        st.metric("Max ELO", f"{elo_stats['max_elo']:.0f}")
-        st.metric("Range", f"{elo_stats['elo_range']:.0f}")
-        st.metric("Avg Games", f"{df['total_matches'].mean():.0f}")
-
-    st.sidebar.metric("Std Dev", f"{elo_stats['std_elo']:.0f}")
+        return []
 
 
 def show_team_analysis():
-    """Main function to display team analysis dashboard"""
-    data = load_elo_data()
-    if data is None:
+    st.title("🏆 Team Tier & Placement Analysis")
+
+    data = load_teams()
+
+    if not data:
         return
 
-    df = pd.DataFrame(data["team_predictions"])
+    df = pd.json_normalize(data)
 
-    show_elo_statistics(data["elo_statistics"], df)
-
-    min_matches = st.slider(
-        "Minimum number of matches",
-        min_value=int(df["total_matches"].min()),
-        max_value=int(df["total_matches"].max()),
-        value=int(df["total_matches"].min()),
-        step=1,
+    df.rename(
+        columns={
+            "Team_Name": "team_name",
+            "Tier": "tier",
+            "Distance_From_Best": "distance_from_best",
+            "Features.Elo_Rating": "elo_rating",
+            "Features.Win_Rate": "win_rate",
+            "Features.Total_Matches": "total_matches",
+            "Rank_Within_Tier": "rank_within_tier",
+            "Placement_Explanation": "placement_explanation",
+            "Tier_Profile.Elo_Rating": "tier_elo_avg",
+            "Tier_Profile.Win_Rate": "tier_win_avg",
+            "Tier_Profile.Total_Matches": "tier_matches_avg",
+            "Feature_Importance.Elo_Rating": "fi_elo_rating",
+            "Feature_Importance.Win_Rate": "fi_win_rate",
+            "Feature_Importance.Total_Matches": "fi_total_matches",
+        },
+        inplace=True,
     )
 
-    filtered_df = df[(df["total_matches"] >= min_matches)]
+    df["elo_rating"] = df["elo_rating"].round(1)
+    df["win_rate"] = df["win_rate"].round(1)
+    df["total_matches"] = df["total_matches"].round(0)
 
-    color_map = {
-        "Beginner": "#B0B0B0",
-        "Below Average": "#FF6347",
-        "Intermediate": "#E39B2D",
-        "Skilled": "#4CA64C",
-        "Advanced": "#4099D1",
-        "Exceptional": "#8E5FBF",
+    df["tier_elo_avg"] = df["tier_elo_avg"].round(1)
+    df["tier_win_avg"] = df["tier_win_avg"].round(1)
+    df["tier_matches_avg"] = df["tier_matches_avg"].round(0)
+
+    ordered_tier_labels = [
+        "Legendary",
+        "Exceptional",
+        "Advanced",
+        "Skilled",
+        "Intermediate",
+        "Below Average",
+        "Beginner",
+    ]
+    
+    df["tier"] = pd.Categorical(
+        df["tier"], categories=ordered_tier_labels, ordered=True
+    )
+    df.sort_values(by="tier", inplace=True)
+
+    tier_colors = {
         "Legendary": "#FFD700",
+        "Exceptional": "#8E5FBF",
+        "Advanced": "#4099D1",
+        "Skilled": "#4CA64C",
+        "Intermediate": "#E39B2D",
+        "Below Average": "#FF6347",
+        "Beginner": "#B0B0B0",
     }
 
-    columns_to_show = [
-        "team_name",
-        "skill_level",
-        "elo_ranking",
-        "elo_rating",
-        "win_rate",
-        "total_matches",
-        "percentile",
-    ]
+    # Sidebar filter
+    min_matches = st.sidebar.slider(
+        "Minimum matches played",
+        int(df["total_matches"].min()),
+        int(df["total_matches"].max()),
+        1,
+    )
+    df_filtered = df[df["total_matches"] >= min_matches].copy()
 
-    df_display = filtered_df[columns_to_show].reset_index(drop=True)
+    st.subheader("Summary Table")
 
-    df_display.columns = [
-        "Team Name",
-        "Skill Level",
-        "ELO Rank",
-        "ELO Rating",
-        "Win Rate (%)",
-        "Total Matches",
-        "Percentile",
-    ]
-
-    df_display.index += 1
-    df_display.index.name = "Display Rank"
-
-    def highlight_skill_level(row):
-        color = color_map.get(row["Skill Level"], "#FFFFFF")
-        return [f"background-color: {color}; opacity: 0.3"] * len(row)
-
-    styled_df = df_display.style.apply(highlight_skill_level, axis=1).format(
-        {
-            "ELO Rating": "{:.2f}",
-            "Win Rate (%)": "{:.2f}",
-            "Percentile": "{:.2f}",
-        }
+    display_cols = ["team_name", "tier", "elo_rating", "win_rate"]
+    df_display = df_filtered[display_cols].copy()
+    df_display.rename(
+        columns={
+            "team_name": "Team Name",
+            "tier": "Tier",
+            "elo_rating": "ELO Rating",
+            "win_rate": "Win Rate (%)",
+        },
+        inplace=True,
     )
 
-    st.dataframe(styled_df, use_container_width=True)
+    st.dataframe(
+        df_display.style.format(
+            {
+                "ELO Rating": "{:.1f}",
+                "Win Rate (%)": "{:.1f}",
+            }
+        ),
+        use_container_width=True,
+    )
+
+    st.subheader("Individual Team Placement Details and Analysis")
+
+    team_names = df_filtered["team_name"].unique()
+    selected_team_name = st.selectbox(
+        "Select a team for detailed analysis:",
+        team_names,
+        index=0,
+    )
+
+    if selected_team_name:
+        selected_team_row = df_filtered[
+            df_filtered["team_name"] == selected_team_name
+        ].iloc[0]
+
+        with st.expander(
+            f"Detailed Analysis for {selected_team_row['team_name']} ({selected_team_row['tier']}-Tier)"
+        ):
+            st.markdown(f"**Team Name:** {selected_team_row['team_name']}")
+            st.markdown(f"**Assigned Tier:** {selected_team_row['tier']}")
+            st.markdown(
+                f"**Rank within {selected_team_row['tier']}-Tier:** {selected_team_row['rank_within_tier']}"
+            )
+
+            st.markdown("### Placement Explanation")
+            st.markdown(selected_team_row["placement_explanation"])
+
+            # Get tier averages for calculations
+            tier_avg_data = df[
+                ["tier", "tier_elo_avg", "tier_win_avg", "tier_matches_avg"]
+            ].drop_duplicates()
+            tier_avg_data["tier"] = pd.Categorical(
+                tier_avg_data["tier"], categories=ordered_tier_labels, ordered=True
+            )
+            tier_avg_data = tier_avg_data.sort_values("tier")
+
+
+            st.markdown("#### Quick Stats Comparison vs Tier Average")
+            selected_tier_avg = tier_avg_data[tier_avg_data["tier"] == selected_team_row["tier"]].iloc[0]
+            
+            col1, col2, col3 = st.columns(3)
+            
+            with col1:
+                elo_delta = round(selected_team_row['elo_rating'] - selected_tier_avg['tier_elo_avg'], 1)
+                st.metric(
+                    label="ELO Rating",
+                    value=f"{selected_team_row['elo_rating']:.1f}",
+                    delta=f"{elo_delta:+.1f}" if elo_delta != 0 else "0.0",
+                    help=f"vs {selected_team_row['tier']}-Tier Average: {selected_tier_avg['tier_elo_avg']:.1f}"
+                )
+            
+            with col2:
+                win_rate_delta = round(selected_team_row['win_rate'] - selected_tier_avg['tier_win_avg'], 1)
+                st.metric(
+                    label="Win Rate (%)",
+                    value=f"{selected_team_row['win_rate']:.1f}%",
+                    delta=f"{win_rate_delta:+.1f}%" if win_rate_delta != 0 else "0.0%",
+                    help=f"vs {selected_team_row['tier']}-Tier Average: {selected_tier_avg['tier_win_avg']:.1f}%"
+                )
+            
+            with col3:
+                matches_delta = round(selected_team_row['total_matches'] - selected_tier_avg['tier_matches_avg'], 0)
+                st.metric(
+                    label="Total Matches",
+                    value=f"{selected_team_row['total_matches']:.0f}",
+                    delta=f"{matches_delta:+.0f}" if matches_delta != 0 else "0",
+                    help=f"vs {selected_team_row['tier']}-Tier Average: {selected_tier_avg['tier_matches_avg']:.0f}"
+                )
+            st.markdown("---")
+
+    st.subheader("ELO Rating vs Win Rate Scatter Plot")
 
     fig_scatter = px.scatter(
-        filtered_df,
+        df_filtered,
         x="elo_rating",
         y="win_rate",
-        color="skill_level",
-        color_discrete_map=color_map,
+        color="tier",
         size="total_matches",
+        color_discrete_map=tier_colors,
         hover_data={
             "team_name": True,
-            "elo_ranking": True,
-            "percentile": True,
+            "elo_rating": True,
+            "win_rate": True,
             "total_matches": True,
-            "elo_rating": ":.1f",
-            "win_rate": ":.1f",
         },
-        title="ELO Rating vs Win Rate (bubble size = total matches)",
         labels={
             "elo_rating": "ELO Rating",
             "win_rate": "Win Rate (%)",
-            "skill_level": "Skill Level",
+            "tier": "Tier",
+            "total_matches": "Matches Played",
         },
+        title="ELO Rating vs Win Rate by Tier (bubble size = matches played)",
     )
 
-    fig_scatter.update_layout(
-        xaxis_title="ELO Rating", yaxis_title="Win Rate (%)", height=600
-    )
-
+    fig_scatter.update_layout(height=600)
     st.plotly_chart(fig_scatter, use_container_width=True)
-
-
-if __name__ == "__main__":
-    show_team_analysis()
