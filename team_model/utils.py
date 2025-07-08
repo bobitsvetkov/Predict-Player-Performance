@@ -33,8 +33,3 @@ def extract_team_features(team_data: Dict[str, Any]) -> Dict[str, Any]:
         "Win_Rate": round(win_rate * 100, 2),  # Convert to percentage (0-100) for training
         "Total_Matches": len(matches),
     }
-
-def save_results_to_json(results: Dict[str, Any], output_path: str) -> None:
-    """Save results to JSON file"""
-    with open(output_path, 'w') as f:
-        json.dump(results, f, indent=2)
