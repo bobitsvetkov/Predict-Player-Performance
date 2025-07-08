@@ -19,12 +19,13 @@ def display_player_prediction():
     score_type = "Predicted_Score"
 
     color_map = {
-        "Champion": "#FFD700",
-        "Good Player": "#8E5FBF",
-        "Above Average": "#4CA64C",
-        "Average": "#E39B2D",
-        "Below Average": "#FF6347",
-        "New Player": "#B0B0B0",
+        "S": "#FFD700",
+        "A": "#8E5FBF",
+        "B": "#4099D1",
+        "C": "#4CA64C",
+        "D": "#E39B2D",
+        "E": "#FF6347",
+        "F": "#B0B0B0",
     }
 
     fig = px.scatter(
