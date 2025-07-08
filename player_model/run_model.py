@@ -3,11 +3,12 @@ import json
 from data_preprocessing import preprocess_data
 from model_training import train_and_evaluate_model
 from prediction import predict_and_assign_tiers
-from utils.utils import format_decimal_to_percent_columns, explain_model_with_shap
+from utils import format_decimal_columns, explain_model_with_shap
 
 
 def run_model(
-    input_file="data/player_stats_cleaned.json", output_file="data/player_data.json"
+    input_file="data/player_stats_recalculated.json",
+    output_file="data/player_data.json",
 ):
     """
     Orchestrates the entire process of predicting battle performance,
@@ -47,7 +48,7 @@ def run_model(
     df = predict_and_assign_tiers(df, best_model, features, X_test_index, y_pred_test)
 
     # 4. Save Results
-    df = format_decimal_to_percent_columns(df)
+    df = format_decimal_columns(df)
     df_sorted = df.sort_values(by="Predicted_Score", ascending=False)
     df_sorted.to_json(output_file, orient="records", indent=4)
     print("\nTier distribution in final output:")

@@ -8,8 +8,15 @@ def explain_model_with_shap(model, X):
     return shap_values
 
 
-def format_decimal_to_percent_columns(df):
-    percent_fields = ["Win %", "Playoff Rate"]
-    for col in percent_fields:
-        df[col] = df[col].apply(lambda x: f"{x * 100:.1f}%" if pd.notnull(x) else x)
+def format_decimal_columns(df):
+    decimal_fields = [
+        "Win %",
+        "Playoff Rate",
+        "K/D ratio",
+        "Chevrons/game",
+        "Playoff Rate",
+    ]
+    for col in decimal_fields:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors="coerce").round(2)
     return df
