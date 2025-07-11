@@ -80,7 +80,6 @@ def show_team_analysis():
         "Beginner": "#B0B0B0",
     }
 
-    # Sidebar filter
     min_matches = st.sidebar.slider(
         "Minimum matches played",
         int(df["total_matches"].min()),
@@ -140,7 +139,6 @@ def show_team_analysis():
             st.markdown("### Placement Explanation")
             st.markdown(selected_team_row["placement_explanation"])
 
-            # Get tier averages for calculations
             tier_avg_data = df[
                 ["tier", "tier_elo_avg", "tier_win_avg", "tier_matches_avg"]
             ].drop_duplicates()

@@ -12,21 +12,13 @@ st.set_page_config(
 )
 
 st.sidebar.title("Navigation")
-page = st.sidebar.selectbox(
-    "Choose a page",
-    [
-        "Player Prediction",
-        "Player Comparison",
-        "Team Prediction",
-        "Team Comparison",
-    ],
-)
 
-if page == "Player Prediction":
-    display_player_prediction()
-elif page == "Player Comparison":
-    show_player_comparison()
-elif page == "Team Prediction":
-    show_team_analysis()
-elif page == "Team Comparison":
-    show_team_comparison()
+pages = {
+    "Player Prediction": display_player_prediction,
+    "Player Comparison": show_player_comparison,
+    "Team Prediction": show_team_analysis,
+    "Team Comparison": show_team_comparison,
+}
+
+page = st.sidebar.selectbox("Choose a page", list(pages.keys()))
+pages[page]()

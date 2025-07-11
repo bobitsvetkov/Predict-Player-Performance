@@ -54,7 +54,6 @@ def show_player_comparison():
     for feature in features:
         col1, col2 = st.columns(2)
 
-        # Determine if it's percentage-based
         is_percentage = feature in percentage_features
 
         if is_percentage:
@@ -88,7 +87,6 @@ def show_player_comparison():
                 delta_color="normal",
             )
 
-    # Summary
     st.markdown("---")
     if p1_wins != p2_wins:
         winner = player1 if p1_wins > p2_wins else player2
