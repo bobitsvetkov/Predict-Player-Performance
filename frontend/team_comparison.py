@@ -15,7 +15,7 @@ def load_teams(filename="data/team_tiers.json"):
 
 
 def show_team_comparison():
-    st.title("⚔️ Team vs Team Comparison")
+    st.title("Team vs Team Comparison")
 
     df = load_teams()
     if df.empty:

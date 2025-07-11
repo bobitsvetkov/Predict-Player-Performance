@@ -18,7 +18,7 @@ def load_teams(filename="data/team_tiers.json"):
 
 
 def show_team_analysis():
-    st.title("🏆 Team Tier & Placement Analysis")
+    st.title("Team Tier & Placement Analysis")
 
     data = load_teams()
 
@@ -64,7 +64,7 @@ def show_team_analysis():
         "Below Average",
         "Beginner",
     ]
-    
+
     df["tier"] = pd.Categorical(
         df["tier"], categories=ordered_tier_labels, ordered=True
     )
@@ -128,7 +128,7 @@ def show_team_analysis():
 
         with st.expander(
             f"Detailed Analysis for {selected_team_row['team_name']} ({selected_team_row['tier']}-Tier)",
-            expanded = True
+            expanded=True,
         ):
             st.markdown(f"**Team Name:** {selected_team_row['team_name']}")
             st.markdown(f"**Assigned Tier:** {selected_team_row['tier']}")
@@ -147,37 +147,47 @@ def show_team_analysis():
             )
             tier_avg_data = tier_avg_data.sort_values("tier")
 
-
             st.markdown("#### Comparison vs Tier Average")
-            selected_tier_avg = tier_avg_data[tier_avg_data["tier"] == selected_team_row["tier"]].iloc[0]
-            
+            selected_tier_avg = tier_avg_data[
+                tier_avg_data["tier"] == selected_team_row["tier"]
+            ].iloc[0]
+
             col1, col2, col3 = st.columns(3)
-            
+
             with col1:
-                elo_delta = round(selected_team_row['elo_rating'] - selected_tier_avg['tier_elo_avg'], 1)
+                elo_delta = round(
+                    selected_team_row["elo_rating"] - selected_tier_avg["tier_elo_avg"],
+                    1,
+                )
                 st.metric(
                     label="ELO Rating",
                     value=f"{selected_team_row['elo_rating']:.1f}",
                     delta=f"{elo_delta:+.1f}" if elo_delta != 0 else "0.0",
-                    help=f"vs {selected_team_row['tier']}-Tier Average: {selected_tier_avg['tier_elo_avg']:.1f}"
+                    help=f"vs {selected_team_row['tier']}-Tier Average: {selected_tier_avg['tier_elo_avg']:.1f}",
                 )
-            
+
             with col2:
-                win_rate_delta = round(selected_team_row['win_rate'] - selected_tier_avg['tier_win_avg'], 1)
+                win_rate_delta = round(
+                    selected_team_row["win_rate"] - selected_tier_avg["tier_win_avg"], 1
+                )
                 st.metric(
                     label="Win Rate (%)",
                     value=f"{selected_team_row['win_rate']:.1f}%",
                     delta=f"{win_rate_delta:+.1f}%" if win_rate_delta != 0 else "0.0%",
-                    help=f"vs {selected_team_row['tier']}-Tier Average: {selected_tier_avg['tier_win_avg']:.1f}%"
+                    help=f"vs {selected_team_row['tier']}-Tier Average: {selected_tier_avg['tier_win_avg']:.1f}%",
                 )
-            
+
             with col3:
-                matches_delta = round(selected_team_row['total_matches'] - selected_tier_avg['tier_matches_avg'], 0)
+                matches_delta = round(
+                    selected_team_row["total_matches"]
+                    - selected_tier_avg["tier_matches_avg"],
+                    0,
+                )
                 st.metric(
                     label="Total Matches",
                     value=f"{selected_team_row['total_matches']:.0f}",
                     delta=f"{matches_delta:+.0f}" if matches_delta != 0 else "0",
-                    help=f"vs {selected_team_row['tier']}-Tier Average: {selected_tier_avg['tier_matches_avg']:.0f}"
+                    help=f"vs {selected_team_row['tier']}-Tier Average: {selected_tier_avg['tier_matches_avg']:.0f}",
                 )
             st.markdown("---")
 
