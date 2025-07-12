@@ -8,14 +8,6 @@ def display_player_prediction():
 
     st.title("Player Scores and Tiers Dashboard")
 
-    tier_filter = st.multiselect(
-        "Select Tiers to display",
-        options=df["Tier"].unique(),
-        default=df["Tier"].unique(),
-    )
-
-    filtered_df = df[df["Tier"].isin(tier_filter)]
-
     score_type = "Predicted_Score"
 
     color_map = {
@@ -29,7 +21,7 @@ def display_player_prediction():
     }
 
     fig = px.scatter(
-        filtered_df,
+        df,
         x=score_type,
         y="K/D ratio",
         color="Tier",
@@ -51,7 +43,7 @@ def display_player_prediction():
     ]
 
     df_display = (
-        filtered_df[columns_to_show]
+        df[columns_to_show]
         .sort_values(by=score_type, ascending=False)
         .reset_index(drop=True)
     )
@@ -68,4 +60,5 @@ def display_player_prediction():
             score_type: "{:.2f}",
         }
     )
+
     st.dataframe(df_display)
