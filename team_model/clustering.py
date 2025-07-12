@@ -25,7 +25,10 @@ def perform_clustering(
     """Perform K-means clustering"""
     kmeans = KMeans(n_clusters=n_clusters, random_state=random_state)
     labels = kmeans.fit_predict(X_scaled)
-    return labels, kmeans.cluster_centers_,
+    return (
+        labels,
+        kmeans.cluster_centers_,
+    )
 
 
 def calculate_feature_importance(

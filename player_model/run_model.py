@@ -44,10 +44,8 @@ def run_model(
 
     shap.summary_plot(shap_values, X)
 
-    # 3. Predict and Assign Tiers
     df = predict_and_assign_tiers(df, best_model, features, X_test_index, y_pred_test)
 
-    # 4. Save Results
     df = format_decimal_columns(df)
     df_sorted = df.sort_values(by="Predicted_Score", ascending=False)
     df_sorted.to_json(output_file, orient="records", indent=4)

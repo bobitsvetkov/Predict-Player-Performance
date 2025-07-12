@@ -1,5 +1,28 @@
 [
   {
+    "Team_Name": "Best or Bust",
+    "Tier": "Legendary",
+    "Distance_From_Best": 69.77,
+    "Features": {
+      "Elo_Rating": 1247.44,
+      "Win_Rate": 79.41,
+      "Total_Matches": 34
+    },
+    "Rank_Within_Tier": 1,
+    "Placement_Analysis": "Standard Legendary-tier performance.",
+    "Placement_Explanation": "Placed in Legendary tier based on: \u2022 Elo Rating: 1247.4 (vs tier avg 1177.8) - slightly above tier average [91.4% importance] \u2022 Win Rate: 79.4 (vs tier avg 78.8%) - slightly above tier average [7.5% importance] \u2022 Total Matches: 34.0 (vs tier avg 30.0) - slightly above tier average [1.0% importance] \u2022 Borderline case for Legendary tier (distance: 69.77)",
+    "Tier_Profile": {
+      "Elo_Rating": 1177.783,
+      "Win_Rate": 78.85,
+      "Total_Matches": 30.0
+    },
+    "Feature_Importance": {
+      "Elo_Rating": 0.914398423655449,
+      "Win_Rate": 0.07514857427911212,
+      "Total_Matches": 0.010453002065438958
+    }
+  },
+  {
     "Team_Name": "Parthia's Finest",
     "Tier": "Legendary",
     "Distance_From_Best": 31.26,
@@ -8,7 +31,7 @@
       "Win_Rate": 78.57,
       "Total_Matches": 28
     },
-    "Rank_Within_Tier": 1,
+    "Rank_Within_Tier": 2,
     "Placement_Analysis": "Standard Legendary-tier performance.",
     "Placement_Explanation": "Placed in Legendary tier based on: \u2022 Elo Rating: 1146.6 (vs tier avg 1177.8) - slightly below tier average [91.4% importance] \u2022 Win Rate: 78.6 (vs tier avg 78.8%) - slightly below tier average [7.5% importance] \u2022 Total Matches: 28.0 (vs tier avg 30.0) - slightly below tier average [1.0% importance] \u2022 Borderline case for Legendary tier (distance: 31.26)",
     "Tier_Profile": {
@@ -31,32 +54,9 @@
       "Win_Rate": 78.57,
       "Total_Matches": 28
     },
-    "Rank_Within_Tier": 2,
-    "Placement_Analysis": "Standard Legendary-tier performance.",
-    "Placement_Explanation": "Placed in Legendary tier based on: \u2022 Elo Rating: 1139.3 (vs tier avg 1177.8) - slightly below tier average [91.4% importance] \u2022 Win Rate: 78.6 (vs tier avg 78.8%) - slightly below tier average [7.5% importance] \u2022 Total Matches: 28.0 (vs tier avg 30.0) - slightly below tier average [1.0% importance] \u2022 Borderline case for Legendary tier (distance: 38.52)",
-    "Tier_Profile": {
-      "Elo_Rating": 1177.783,
-      "Win_Rate": 78.85,
-      "Total_Matches": 30.0
-    },
-    "Feature_Importance": {
-      "Elo_Rating": 0.914398423655449,
-      "Win_Rate": 0.07514857427911212,
-      "Total_Matches": 0.010453002065438958
-    }
-  },
-  {
-    "Team_Name": "Best or Bust",
-    "Tier": "Legendary",
-    "Distance_From_Best": 69.77,
-    "Features": {
-      "Elo_Rating": 1247.44,
-      "Win_Rate": 79.41,
-      "Total_Matches": 34
-    },
     "Rank_Within_Tier": 3,
     "Placement_Analysis": "Standard Legendary-tier performance.",
-    "Placement_Explanation": "Placed in Legendary tier based on: \u2022 Elo Rating: 1247.4 (vs tier avg 1177.8) - slightly above tier average [91.4% importance] \u2022 Win Rate: 79.4 (vs tier avg 78.8%) - slightly above tier average [7.5% importance] \u2022 Total Matches: 34.0 (vs tier avg 30.0) - slightly above tier average [1.0% importance] \u2022 Borderline case for Legendary tier (distance: 69.77)",
+    "Placement_Explanation": "Placed in Legendary tier based on: \u2022 Elo Rating: 1139.3 (vs tier avg 1177.8) - slightly below tier average [91.4% importance] \u2022 Win Rate: 78.6 (vs tier avg 78.8%) - slightly below tier average [7.5% importance] \u2022 Total Matches: 28.0 (vs tier avg 30.0) - slightly below tier average [1.0% importance] \u2022 Borderline case for Legendary tier (distance: 38.52)",
     "Tier_Profile": {
       "Elo_Rating": 1177.783,
       "Win_Rate": 78.85,
@@ -345,17 +345,17 @@
     }
   },
   {
-    "Team_Name": "The Auld Alliance",
+    "Team_Name": "Keyboard Warriors",
     "Tier": "Skilled",
-    "Distance_From_Best": 160.01,
+    "Distance_From_Best": 163.64,
     "Features": {
-      "Elo_Rating": 1019.34,
-      "Win_Rate": 75.0,
-      "Total_Matches": 8
+      "Elo_Rating": 1018.13,
+      "Win_Rate": 100.0,
+      "Total_Matches": 1
     },
     "Rank_Within_Tier": 4,
     "Placement_Analysis": "Standard Skilled-tier performance.",
-    "Placement_Explanation": "Placed in Skilled tier based on: \u2022 Elo Rating: 1019.3 (vs tier avg 1044.7) - slightly below tier average [91.4% importance] \u2022 Win Rate: 75.0 (vs tier avg 86.4%) - slightly below tier average [7.5% importance] \u2022 Total Matches: 8.0 (vs tier avg 6.0) - significantly above tier average [1.0% importance] \u2022 Borderline case for Skilled tier (distance: 27.92)",
+    "Placement_Explanation": "Placed in Skilled tier based on: \u2022 Elo Rating: 1018.1 (vs tier avg 1044.7) - slightly below tier average [91.4% importance] \u2022 Win Rate: 100.0 (vs tier avg 86.4%) - slightly above tier average [7.5% importance] \u2022 Total Matches: 1.0 (vs tier avg 6.0) - significantly below tier average [1.0% importance] \u2022 Borderline case for Skilled tier (distance: 30.28)",
     "Tier_Profile": {
       "Elo_Rating": 1044.734,
       "Win_Rate": 86.426,
@@ -368,17 +368,17 @@
     }
   },
   {
-    "Team_Name": "Keyboard Warriors",
+    "Team_Name": "The Auld Alliance",
     "Tier": "Skilled",
-    "Distance_From_Best": 163.64,
+    "Distance_From_Best": 160.01,
     "Features": {
-      "Elo_Rating": 1018.13,
-      "Win_Rate": 100.0,
-      "Total_Matches": 1
+      "Elo_Rating": 1019.34,
+      "Win_Rate": 75.0,
+      "Total_Matches": 8
     },
     "Rank_Within_Tier": 5,
     "Placement_Analysis": "Standard Skilled-tier performance.",
-    "Placement_Explanation": "Placed in Skilled tier based on: \u2022 Elo Rating: 1018.1 (vs tier avg 1044.7) - slightly below tier average [91.4% importance] \u2022 Win Rate: 100.0 (vs tier avg 86.4%) - slightly above tier average [7.5% importance] \u2022 Total Matches: 1.0 (vs tier avg 6.0) - significantly below tier average [1.0% importance] \u2022 Borderline case for Skilled tier (distance: 30.28)",
+    "Placement_Explanation": "Placed in Skilled tier based on: \u2022 Elo Rating: 1019.3 (vs tier avg 1044.7) - slightly below tier average [91.4% importance] \u2022 Win Rate: 75.0 (vs tier avg 86.4%) - slightly below tier average [7.5% importance] \u2022 Total Matches: 8.0 (vs tier avg 6.0) - significantly above tier average [1.0% importance] \u2022 Borderline case for Skilled tier (distance: 27.92)",
     "Tier_Profile": {
       "Elo_Rating": 1044.734,
       "Win_Rate": 86.426,
@@ -529,17 +529,17 @@
     }
   },
   {
-    "Team_Name": "Duck Hunters",
+    "Team_Name": "Unbiased Mods",
     "Tier": "Intermediate",
-    "Distance_From_Best": 164.6,
+    "Distance_From_Best": 165.21,
     "Features": {
-      "Elo_Rating": 1015.87,
-      "Win_Rate": 53.33,
-      "Total_Matches": 15
+      "Elo_Rating": 1016.89,
+      "Win_Rate": 50.0,
+      "Total_Matches": 6
     },
     "Rank_Within_Tier": 7,
     "Placement_Analysis": "Standard Intermediate-tier performance.",
-    "Placement_Explanation": "Placed in Intermediate tier based on: \u2022 Elo Rating: 1015.9 (vs tier avg 1005.8) - slightly above tier average [91.4% importance] \u2022 Win Rate: 53.3 (vs tier avg 52.6%) - slightly above tier average [7.5% importance] \u2022 Total Matches: 15.0 (vs tier avg 9.8) - significantly above tier average [1.0% importance] \u2022 Borderline case for Intermediate tier (distance: 11.32)",
+    "Placement_Explanation": "Placed in Intermediate tier based on: \u2022 Elo Rating: 1016.9 (vs tier avg 1005.8) - slightly above tier average [91.4% importance] \u2022 Win Rate: 50.0 (vs tier avg 52.6%) - slightly below tier average [7.5% importance] \u2022 Total Matches: 6.0 (vs tier avg 9.8) - significantly below tier average [1.0% importance] \u2022 Borderline case for Intermediate tier (distance: 11.98)",
     "Tier_Profile": {
       "Elo_Rating": 1005.831,
       "Win_Rate": 52.573,
@@ -575,17 +575,17 @@
     }
   },
   {
-    "Team_Name": "Unbiased Mods",
+    "Team_Name": "Duck Hunters",
     "Tier": "Intermediate",
-    "Distance_From_Best": 165.21,
+    "Distance_From_Best": 164.6,
     "Features": {
-      "Elo_Rating": 1016.89,
-      "Win_Rate": 50.0,
-      "Total_Matches": 6
+      "Elo_Rating": 1015.87,
+      "Win_Rate": 53.33,
+      "Total_Matches": 15
     },
     "Rank_Within_Tier": 9,
     "Placement_Analysis": "Standard Intermediate-tier performance.",
-    "Placement_Explanation": "Placed in Intermediate tier based on: \u2022 Elo Rating: 1016.9 (vs tier avg 1005.8) - slightly above tier average [91.4% importance] \u2022 Win Rate: 50.0 (vs tier avg 52.6%) - slightly below tier average [7.5% importance] \u2022 Total Matches: 6.0 (vs tier avg 9.8) - significantly below tier average [1.0% importance] \u2022 Borderline case for Intermediate tier (distance: 11.98)",
+    "Placement_Explanation": "Placed in Intermediate tier based on: \u2022 Elo Rating: 1015.9 (vs tier avg 1005.8) - slightly above tier average [91.4% importance] \u2022 Win Rate: 53.3 (vs tier avg 52.6%) - slightly above tier average [7.5% importance] \u2022 Total Matches: 15.0 (vs tier avg 9.8) - significantly above tier average [1.0% importance] \u2022 Borderline case for Intermediate tier (distance: 11.32)",
     "Tier_Profile": {
       "Elo_Rating": 1005.831,
       "Win_Rate": 52.573,
@@ -621,17 +621,17 @@
     }
   },
   {
-    "Team_Name": "Duck Horde Ascendency",
+    "Team_Name": "Off-Meta Inc.",
     "Tier": "Intermediate",
-    "Distance_From_Best": 175.26,
+    "Distance_From_Best": 175.29,
     "Features": {
-      "Elo_Rating": 1005.4,
-      "Win_Rate": 57.14,
-      "Total_Matches": 7
+      "Elo_Rating": 1006.56,
+      "Win_Rate": 50.0,
+      "Total_Matches": 6
     },
     "Rank_Within_Tier": 11,
     "Placement_Analysis": "Standard Intermediate-tier performance.",
-    "Placement_Explanation": "Placed in Intermediate tier based on: \u2022 Elo Rating: 1005.4 (vs tier avg 1005.8) - slightly below tier average [91.4% importance] \u2022 Win Rate: 57.1 (vs tier avg 52.6%) - slightly above tier average [7.5% importance] \u2022 Total Matches: 7.0 (vs tier avg 9.8) - significantly below tier average [1.0% importance] \u2022 Borderline case for Intermediate tier (distance: 5.39)",
+    "Placement_Explanation": "Placed in Intermediate tier based on: \u2022 Elo Rating: 1006.6 (vs tier avg 1005.8) - slightly above tier average [91.4% importance] \u2022 Win Rate: 50.0 (vs tier avg 52.6%) - slightly below tier average [7.5% importance] \u2022 Total Matches: 6.0 (vs tier avg 9.8) - significantly below tier average [1.0% importance] \u2022 Borderline case for Intermediate tier (distance: 4.67)",
     "Tier_Profile": {
       "Elo_Rating": 1005.831,
       "Win_Rate": 52.573,
@@ -644,17 +644,17 @@
     }
   },
   {
-    "Team_Name": "Off-Meta Inc.",
+    "Team_Name": "Duck Horde Ascendency",
     "Tier": "Intermediate",
-    "Distance_From_Best": 175.29,
+    "Distance_From_Best": 175.26,
     "Features": {
-      "Elo_Rating": 1006.56,
-      "Win_Rate": 50.0,
-      "Total_Matches": 6
+      "Elo_Rating": 1005.4,
+      "Win_Rate": 57.14,
+      "Total_Matches": 7
     },
     "Rank_Within_Tier": 12,
     "Placement_Analysis": "Standard Intermediate-tier performance.",
-    "Placement_Explanation": "Placed in Intermediate tier based on: \u2022 Elo Rating: 1006.6 (vs tier avg 1005.8) - slightly above tier average [91.4% importance] \u2022 Win Rate: 50.0 (vs tier avg 52.6%) - slightly below tier average [7.5% importance] \u2022 Total Matches: 6.0 (vs tier avg 9.8) - significantly below tier average [1.0% importance] \u2022 Borderline case for Intermediate tier (distance: 4.67)",
+    "Placement_Explanation": "Placed in Intermediate tier based on: \u2022 Elo Rating: 1005.4 (vs tier avg 1005.8) - slightly below tier average [91.4% importance] \u2022 Win Rate: 57.1 (vs tier avg 52.6%) - slightly above tier average [7.5% importance] \u2022 Total Matches: 7.0 (vs tier avg 9.8) - significantly below tier average [1.0% importance] \u2022 Borderline case for Intermediate tier (distance: 5.39)",
     "Tier_Profile": {
       "Elo_Rating": 1005.831,
       "Win_Rate": 52.573,
@@ -736,17 +736,17 @@
     }
   },
   {
-    "Team_Name": "Questionable Tactics",
+    "Team_Name": "North Korean Avengers",
     "Tier": "Intermediate",
-    "Distance_From_Best": 186.43,
+    "Distance_From_Best": 187.33,
     "Features": {
-      "Elo_Rating": 994.06,
-      "Win_Rate": 57.14,
+      "Elo_Rating": 995.39,
+      "Win_Rate": 42.86,
       "Total_Matches": 7
     },
     "Rank_Within_Tier": 16,
     "Placement_Analysis": "Standard Intermediate-tier performance.",
-    "Placement_Explanation": "Placed in Intermediate tier based on: \u2022 Elo Rating: 994.1 (vs tier avg 1005.8) - slightly below tier average [91.4% importance] \u2022 Win Rate: 57.1 (vs tier avg 52.6%) - slightly above tier average [7.5% importance] \u2022 Total Matches: 7.0 (vs tier avg 9.8) - significantly below tier average [1.0% importance] \u2022 Borderline case for Intermediate tier (distance: 12.94)",
+    "Placement_Explanation": "Placed in Intermediate tier based on: \u2022 Elo Rating: 995.4 (vs tier avg 1005.8) - slightly below tier average [91.4% importance] \u2022 Win Rate: 42.9 (vs tier avg 52.6%) - slightly below tier average [7.5% importance] \u2022 Total Matches: 7.0 (vs tier avg 9.8) - significantly below tier average [1.0% importance] \u2022 Borderline case for Intermediate tier (distance: 14.54)",
     "Tier_Profile": {
       "Elo_Rating": 1005.831,
       "Win_Rate": 52.573,
@@ -759,17 +759,17 @@
     }
   },
   {
-    "Team_Name": "North Korean Avengers",
+    "Team_Name": "Questionable Tactics",
     "Tier": "Intermediate",
-    "Distance_From_Best": 187.33,
+    "Distance_From_Best": 186.43,
     "Features": {
-      "Elo_Rating": 995.39,
-      "Win_Rate": 42.86,
+      "Elo_Rating": 994.06,
+      "Win_Rate": 57.14,
       "Total_Matches": 7
     },
     "Rank_Within_Tier": 17,
     "Placement_Analysis": "Standard Intermediate-tier performance.",
-    "Placement_Explanation": "Placed in Intermediate tier based on: \u2022 Elo Rating: 995.4 (vs tier avg 1005.8) - slightly below tier average [91.4% importance] \u2022 Win Rate: 42.9 (vs tier avg 52.6%) - slightly below tier average [7.5% importance] \u2022 Total Matches: 7.0 (vs tier avg 9.8) - significantly below tier average [1.0% importance] \u2022 Borderline case for Intermediate tier (distance: 14.54)",
+    "Placement_Explanation": "Placed in Intermediate tier based on: \u2022 Elo Rating: 994.1 (vs tier avg 1005.8) - slightly below tier average [91.4% importance] \u2022 Win Rate: 57.1 (vs tier avg 52.6%) - slightly above tier average [7.5% importance] \u2022 Total Matches: 7.0 (vs tier avg 9.8) - significantly below tier average [1.0% importance] \u2022 Borderline case for Intermediate tier (distance: 12.94)",
     "Tier_Profile": {
       "Elo_Rating": 1005.831,
       "Win_Rate": 52.573,
@@ -989,17 +989,17 @@
     }
   },
   {
-    "Team_Name": "The Imperial Legion",
+    "Team_Name": "Stoic Floyds",
     "Tier": "Below Average",
-    "Distance_From_Best": 216.31,
+    "Distance_From_Best": 222.35,
     "Features": {
-      "Elo_Rating": 967.68,
-      "Win_Rate": 33.33,
-      "Total_Matches": 6
+      "Elo_Rating": 971.78,
+      "Win_Rate": 0.0,
+      "Total_Matches": 2
     },
     "Rank_Within_Tier": 4,
     "Placement_Analysis": "Standard Below Average-tier performance.",
-    "Placement_Explanation": "Placed in Below Average tier based on: \u2022 Elo Rating: 967.7 (vs tier avg 939.4) - slightly above tier average [91.4% importance] \u2022 Win Rate: 33.3 (vs tier avg 17.2%) - significantly above tier average [7.5% importance] \u2022 Total Matches: 6.0 (vs tier avg 7.3) - slightly below tier average [1.0% importance] \u2022 Borderline case for Below Average tier (distance: 32.61)",
+    "Placement_Explanation": "Placed in Below Average tier based on: \u2022 Elo Rating: 971.8 (vs tier avg 939.4) - slightly above tier average [91.4% importance] \u2022 Win Rate: 0.0 (vs tier avg 17.2%) - significantly below tier average [7.5% importance] \u2022 Total Matches: 2.0 (vs tier avg 7.3) - significantly below tier average [1.0% importance] \u2022 Borderline case for Below Average tier (distance: 37.08)",
     "Tier_Profile": {
       "Elo_Rating": 939.364,
       "Win_Rate": 17.214,
@@ -1012,17 +1012,17 @@
     }
   },
   {
-    "Team_Name": "Stoic Floyds",
+    "Team_Name": "The Imperial Legion",
     "Tier": "Below Average",
-    "Distance_From_Best": 222.35,
+    "Distance_From_Best": 216.31,
     "Features": {
-      "Elo_Rating": 971.78,
-      "Win_Rate": 0.0,
-      "Total_Matches": 2
+      "Elo_Rating": 967.68,
+      "Win_Rate": 33.33,
+      "Total_Matches": 6
     },
     "Rank_Within_Tier": 5,
     "Placement_Analysis": "Standard Below Average-tier performance.",
-    "Placement_Explanation": "Placed in Below Average tier based on: \u2022 Elo Rating: 971.8 (vs tier avg 939.4) - slightly above tier average [91.4% importance] \u2022 Win Rate: 0.0 (vs tier avg 17.2%) - significantly below tier average [7.5% importance] \u2022 Total Matches: 2.0 (vs tier avg 7.3) - significantly below tier average [1.0% importance] \u2022 Borderline case for Below Average tier (distance: 37.08)",
+    "Placement_Explanation": "Placed in Below Average tier based on: \u2022 Elo Rating: 967.7 (vs tier avg 939.4) - slightly above tier average [91.4% importance] \u2022 Win Rate: 33.3 (vs tier avg 17.2%) - significantly above tier average [7.5% importance] \u2022 Total Matches: 6.0 (vs tier avg 7.3) - slightly below tier average [1.0% importance] \u2022 Borderline case for Below Average tier (distance: 32.61)",
     "Tier_Profile": {
       "Elo_Rating": 939.364,
       "Win_Rate": 17.214,
@@ -1196,17 +1196,17 @@
     }
   },
   {
-    "Team_Name": "SlumDog Slingers",
+    "Team_Name": "Point Makers",
     "Tier": "Below Average",
-    "Distance_From_Best": 242.42,
+    "Distance_From_Best": 244.28,
     "Features": {
-      "Elo_Rating": 941.75,
-      "Win_Rate": 28.57,
-      "Total_Matches": 7
+      "Elo_Rating": 942.77,
+      "Win_Rate": 16.67,
+      "Total_Matches": 6
     },
     "Rank_Within_Tier": 13,
     "Placement_Analysis": "Standard Below Average-tier performance.",
-    "Placement_Explanation": "Placed in Below Average tier based on: \u2022 Elo Rating: 941.8 (vs tier avg 939.4) - slightly above tier average [91.4% importance] \u2022 Win Rate: 28.6 (vs tier avg 17.2%) - significantly above tier average [7.5% importance] \u2022 Total Matches: 7.0 (vs tier avg 7.3) - slightly below tier average [1.0% importance] \u2022 Borderline case for Below Average tier (distance: 11.61)",
+    "Placement_Explanation": "Placed in Below Average tier based on: \u2022 Elo Rating: 942.8 (vs tier avg 939.4) - slightly above tier average [91.4% importance] \u2022 Win Rate: 16.7 (vs tier avg 17.2%) - slightly below tier average [7.5% importance] \u2022 Total Matches: 6.0 (vs tier avg 7.3) - slightly below tier average [1.0% importance] \u2022 Borderline case for Below Average tier (distance: 3.68)",
     "Tier_Profile": {
       "Elo_Rating": 939.364,
       "Win_Rate": 17.214,
@@ -1219,17 +1219,17 @@
     }
   },
   {
-    "Team_Name": "Point Makers",
+    "Team_Name": "SlumDog Slingers",
     "Tier": "Below Average",
-    "Distance_From_Best": 244.28,
+    "Distance_From_Best": 242.42,
     "Features": {
-      "Elo_Rating": 942.77,
-      "Win_Rate": 16.67,
-      "Total_Matches": 6
+      "Elo_Rating": 941.75,
+      "Win_Rate": 28.57,
+      "Total_Matches": 7
     },
     "Rank_Within_Tier": 14,
     "Placement_Analysis": "Standard Below Average-tier performance.",
-    "Placement_Explanation": "Placed in Below Average tier based on: \u2022 Elo Rating: 942.8 (vs tier avg 939.4) - slightly above tier average [91.4% importance] \u2022 Win Rate: 16.7 (vs tier avg 17.2%) - slightly below tier average [7.5% importance] \u2022 Total Matches: 6.0 (vs tier avg 7.3) - slightly below tier average [1.0% importance] \u2022 Borderline case for Below Average tier (distance: 3.68)",
+    "Placement_Explanation": "Placed in Below Average tier based on: \u2022 Elo Rating: 941.8 (vs tier avg 939.4) - slightly above tier average [91.4% importance] \u2022 Win Rate: 28.6 (vs tier avg 17.2%) - significantly above tier average [7.5% importance] \u2022 Total Matches: 7.0 (vs tier avg 7.3) - slightly below tier average [1.0% importance] \u2022 Borderline case for Below Average tier (distance: 11.61)",
     "Tier_Profile": {
       "Elo_Rating": 939.364,
       "Win_Rate": 17.214,
@@ -1288,17 +1288,17 @@
     }
   },
   {
-    "Team_Name": "Crimson Chickens",
+    "Team_Name": "Aids Brigade",
     "Tier": "Below Average",
-    "Distance_From_Best": 249.19,
+    "Distance_From_Best": 251.54,
     "Features": {
-      "Elo_Rating": 935.48,
-      "Win_Rate": 25.0,
-      "Total_Matches": 8
+      "Elo_Rating": 940.34,
+      "Win_Rate": 0.0,
+      "Total_Matches": 4
     },
     "Rank_Within_Tier": 17,
     "Placement_Analysis": "Standard Below Average-tier performance.",
-    "Placement_Explanation": "Placed in Below Average tier based on: \u2022 Elo Rating: 935.5 (vs tier avg 939.4) - slightly below tier average [91.4% importance] \u2022 Win Rate: 25.0 (vs tier avg 17.2%) - significantly above tier average [7.5% importance] \u2022 Total Matches: 8.0 (vs tier avg 7.3) - slightly above tier average [1.0% importance] \u2022 Borderline case for Below Average tier (distance: 8.73)",
+    "Placement_Explanation": "Placed in Below Average tier based on: \u2022 Elo Rating: 940.3 (vs tier avg 939.4) - slightly above tier average [91.4% importance] \u2022 Win Rate: 0.0 (vs tier avg 17.2%) - significantly below tier average [7.5% importance] \u2022 Total Matches: 4.0 (vs tier avg 7.3) - significantly below tier average [1.0% importance] \u2022 Borderline case for Below Average tier (distance: 17.55)",
     "Tier_Profile": {
       "Elo_Rating": 939.364,
       "Win_Rate": 17.214,
@@ -1311,17 +1311,17 @@
     }
   },
   {
-    "Team_Name": "Aids Brigade",
+    "Team_Name": "Crimson Chickens",
     "Tier": "Below Average",
-    "Distance_From_Best": 251.54,
+    "Distance_From_Best": 249.19,
     "Features": {
-      "Elo_Rating": 940.34,
-      "Win_Rate": 0.0,
-      "Total_Matches": 4
+      "Elo_Rating": 935.48,
+      "Win_Rate": 25.0,
+      "Total_Matches": 8
     },
     "Rank_Within_Tier": 18,
     "Placement_Analysis": "Standard Below Average-tier performance.",
-    "Placement_Explanation": "Placed in Below Average tier based on: \u2022 Elo Rating: 940.3 (vs tier avg 939.4) - slightly above tier average [91.4% importance] \u2022 Win Rate: 0.0 (vs tier avg 17.2%) - significantly below tier average [7.5% importance] \u2022 Total Matches: 4.0 (vs tier avg 7.3) - significantly below tier average [1.0% importance] \u2022 Borderline case for Below Average tier (distance: 17.55)",
+    "Placement_Explanation": "Placed in Below Average tier based on: \u2022 Elo Rating: 935.5 (vs tier avg 939.4) - slightly below tier average [91.4% importance] \u2022 Win Rate: 25.0 (vs tier avg 17.2%) - significantly above tier average [7.5% importance] \u2022 Total Matches: 8.0 (vs tier avg 7.3) - slightly above tier average [1.0% importance] \u2022 Borderline case for Below Average tier (distance: 8.73)",
     "Tier_Profile": {
       "Elo_Rating": 939.364,
       "Win_Rate": 17.214,
@@ -1357,29 +1357,6 @@
     }
   },
   {
-    "Team_Name": "Backseat Drivers",
-    "Tier": "Below Average",
-    "Distance_From_Best": 266.49,
-    "Features": {
-      "Elo_Rating": 919.28,
-      "Win_Rate": 16.67,
-      "Total_Matches": 12
-    },
-    "Rank_Within_Tier": 20,
-    "Placement_Analysis": "Standard Below Average-tier performance.",
-    "Placement_Explanation": "Placed in Below Average tier based on: \u2022 Elo Rating: 919.3 (vs tier avg 939.4) - slightly below tier average [91.4% importance] \u2022 Win Rate: 16.7 (vs tier avg 17.2%) - slightly below tier average [7.5% importance] \u2022 Total Matches: 12.0 (vs tier avg 7.3) - significantly above tier average [1.0% importance] \u2022 Borderline case for Below Average tier (distance: 20.64)",
-    "Tier_Profile": {
-      "Elo_Rating": 939.364,
-      "Win_Rate": 17.214,
-      "Total_Matches": 7.296
-    },
-    "Feature_Importance": {
-      "Elo_Rating": 0.914398423655449,
-      "Win_Rate": 0.07514857427911212,
-      "Total_Matches": 0.010453002065438958
-    }
-  },
-  {
     "Team_Name": "Will2Kill",
     "Tier": "Below Average",
     "Distance_From_Best": 267.39,
@@ -1388,7 +1365,7 @@
       "Win_Rate": 11.11,
       "Total_Matches": 9
     },
-    "Rank_Within_Tier": 21,
+    "Rank_Within_Tier": 20,
     "Placement_Analysis": "Standard Below Average-tier performance.",
     "Placement_Explanation": "Placed in Below Average tier based on: \u2022 Elo Rating: 920.0 (vs tier avg 939.4) - slightly below tier average [91.4% importance] \u2022 Win Rate: 11.1 (vs tier avg 17.2%) - significantly below tier average [7.5% importance] \u2022 Total Matches: 9.0 (vs tier avg 7.3) - significantly above tier average [1.0% importance] \u2022 Borderline case for Below Average tier (distance: 20.40)",
     "Tier_Profile": {
@@ -1403,17 +1380,17 @@
     }
   },
   {
-    "Team_Name": "Saucey Llamas",
+    "Team_Name": "Backseat Drivers",
     "Tier": "Below Average",
-    "Distance_From_Best": 269.24,
+    "Distance_From_Best": 266.49,
     "Features": {
-      "Elo_Rating": 916.44,
+      "Elo_Rating": 919.28,
       "Win_Rate": 16.67,
       "Total_Matches": 12
     },
-    "Rank_Within_Tier": 22,
+    "Rank_Within_Tier": 21,
     "Placement_Analysis": "Standard Below Average-tier performance.",
-    "Placement_Explanation": "Placed in Below Average tier based on: \u2022 Elo Rating: 916.4 (vs tier avg 939.4) - slightly below tier average [91.4% importance] \u2022 Win Rate: 16.7 (vs tier avg 17.2%) - slightly below tier average [7.5% importance] \u2022 Total Matches: 12.0 (vs tier avg 7.3) - significantly above tier average [1.0% importance] \u2022 Borderline case for Below Average tier (distance: 23.41)",
+    "Placement_Explanation": "Placed in Below Average tier based on: \u2022 Elo Rating: 919.3 (vs tier avg 939.4) - slightly below tier average [91.4% importance] \u2022 Win Rate: 16.7 (vs tier avg 17.2%) - slightly below tier average [7.5% importance] \u2022 Total Matches: 12.0 (vs tier avg 7.3) - significantly above tier average [1.0% importance] \u2022 Borderline case for Below Average tier (distance: 20.64)",
     "Tier_Profile": {
       "Elo_Rating": 939.364,
       "Win_Rate": 17.214,
@@ -1434,9 +1411,32 @@
       "Win_Rate": 0.0,
       "Total_Matches": 6
     },
-    "Rank_Within_Tier": 23,
+    "Rank_Within_Tier": 22,
     "Placement_Analysis": "Standard Below Average-tier performance.",
     "Placement_Explanation": "Placed in Below Average tier based on: \u2022 Elo Rating: 918.4 (vs tier avg 939.4) - slightly below tier average [91.4% importance] \u2022 Win Rate: 0.0 (vs tier avg 17.2%) - significantly below tier average [7.5% importance] \u2022 Total Matches: 6.0 (vs tier avg 7.3) - slightly below tier average [1.0% importance] \u2022 Borderline case for Below Average tier (distance: 27.18)",
+    "Tier_Profile": {
+      "Elo_Rating": 939.364,
+      "Win_Rate": 17.214,
+      "Total_Matches": 7.296
+    },
+    "Feature_Importance": {
+      "Elo_Rating": 0.914398423655449,
+      "Win_Rate": 0.07514857427911212,
+      "Total_Matches": 0.010453002065438958
+    }
+  },
+  {
+    "Team_Name": "Saucey Llamas",
+    "Tier": "Below Average",
+    "Distance_From_Best": 269.24,
+    "Features": {
+      "Elo_Rating": 916.44,
+      "Win_Rate": 16.67,
+      "Total_Matches": 12
+    },
+    "Rank_Within_Tier": 23,
+    "Placement_Analysis": "Standard Below Average-tier performance.",
+    "Placement_Explanation": "Placed in Below Average tier based on: \u2022 Elo Rating: 916.4 (vs tier avg 939.4) - slightly below tier average [91.4% importance] \u2022 Win Rate: 16.7 (vs tier avg 17.2%) - slightly below tier average [7.5% importance] \u2022 Total Matches: 12.0 (vs tier avg 7.3) - significantly above tier average [1.0% importance] \u2022 Borderline case for Below Average tier (distance: 23.41)",
     "Tier_Profile": {
       "Elo_Rating": 939.364,
       "Win_Rate": 17.214,

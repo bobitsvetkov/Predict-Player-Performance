@@ -1,34 +1,37 @@
 import numpy as np
 from typing import List, Dict, Any
 from sklearn.preprocessing import StandardScaler
-from clustering import calculate_feature_importance, calculate_distance_from_best_cluster
+from clustering import (
+    calculate_feature_importance,
+    calculate_distance_from_best_cluster,
+)
 
 
 def generate_placement_explanation(
-    team: Dict[str, Any], 
-    tier_profile: Dict[str, float], 
+    team: Dict[str, Any],
+    tier_profile: Dict[str, float],
     feature_importance: Dict[str, float],
     team_vector: np.ndarray,
     cluster_center: np.ndarray,
-    assigned_tier: str
+    assigned_tier: str,
 ) -> str:
     """Generate detailed explanation for why a team is in a specific tier"""
-    
+
     explanations = []
     tier = assigned_tier
-    
+
     feature_map = {
         "Elo_Rating": ("Elo Rating", team["Elo_Rating"]),
         "Win_Rate": ("Win Rate", team["Win_Rate"]),
-        "Total_Matches": ("Total Matches", team["Total_Matches"])
+        "Total_Matches": ("Total Matches", team["Total_Matches"]),
     }
-    
+
     feature_contributions = []
-    
+
     for i, (feature_key, (feature_name, team_value)) in enumerate(feature_map.items()):
         tier_average = tier_profile.get(feature_key, 0)
         importance = feature_importance.get(feature_key, 0)
-        
+
         if feature_key == "Win_Rate":
             tier_average_pct = tier_average
             difference = team_value - tier_average_pct
@@ -36,26 +39,32 @@ def generate_placement_explanation(
         else:
             difference = team_value - tier_average
             comparison = f"vs tier avg {tier_average:.1f}"
-        
+
         if abs(difference) > 0.1:
             direction = "above" if difference > 0 else "below"
-            strength = "significantly" if abs(difference) > (tier_average * 0.2) else "slightly"
-            
-            feature_contributions.append({
-                "feature": feature_name,
-                "value": team_value,
-                "tier_avg": tier_average,
-                "difference": difference,
-                "direction": direction,
-                "strength": strength,
-                "importance": importance,
-                "comparison": comparison
-            })
-    
+            strength = (
+                "significantly"
+                if abs(difference) > (tier_average * 0.2)
+                else "slightly"
+            )
+
+            feature_contributions.append(
+                {
+                    "feature": feature_name,
+                    "value": team_value,
+                    "tier_avg": tier_average,
+                    "difference": difference,
+                    "direction": direction,
+                    "strength": strength,
+                    "importance": importance,
+                    "comparison": comparison,
+                }
+            )
+
     feature_contributions.sort(key=lambda x: x["importance"], reverse=True)
-    
+
     explanations.append(f"Placed in {tier} tier based on:")
-    
+
     for contrib in feature_contributions:
         importance_pct = contrib["importance"] * 100
         explanations.append(
@@ -63,16 +72,29 @@ def generate_placement_explanation(
             f"{contrib['strength']} {contrib['direction']} tier average "
             f"[{importance_pct:.1f}% importance]"
         )
-    
+
     total_distance = np.linalg.norm(team_vector - cluster_center)
     if total_distance < 0.5:
-        explanations.append(f"• Strong fit for {tier} tier (distance: {total_distance:.2f})")
+        explanations.append(
+            f"• Strong fit for {tier} tier (distance: {total_distance:.2f})"
+        )
     elif total_distance > 1.5:
-        explanations.append(f"• Borderline case for {tier} tier (distance: {total_distance:.2f})")
+        explanations.append(
+            f"• Borderline case for {tier} tier (distance: {total_distance:.2f})"
+        )
     else:
-        explanations.append(f"• Good fit for {tier} tier (distance: {total_distance:.2f})")
-    
+        explanations.append(
+            f"• Good fit for {tier} tier (distance: {total_distance:.2f})"
+        )
+
     return " ".join(explanations)
+
+
+def compute_weighted_score(team, feature_importance):
+    return sum(
+        team["Features"][feature] * importance
+        for feature, importance in feature_importance.items()
+    )
 
 
 def assign_tiers_and_rank_teams(
@@ -88,27 +110,37 @@ def assign_tiers_and_rank_teams(
     # Convert cluster centers back to original scale
     cluster_centers_original = scaler.inverse_transform(cluster_centers_scaled)
 
-    feature_importance = calculate_feature_importance(cluster_centers_original, feature_columns)
-    
+    feature_importance = calculate_feature_importance(
+        cluster_centers_original, feature_columns
+    )
+
     cluster_strengths = []
     cluster_profiles = {}
-    
+
     for i, center in enumerate(cluster_centers_original):
         weighted_strength = 0
         profile = {}
-        
+
         for j, feature in enumerate(feature_columns):
             feature_value = center[j]
             importance = feature_importance[feature]
             weighted_strength += feature_value * importance
             profile[feature] = round(feature_value, 3)
-        
+
         cluster_strengths.append(weighted_strength)
         cluster_profiles[i] = profile
 
     sorted_cluster_ids = np.argsort(cluster_strengths)[::-1]
 
-    tier_labels = ["Legendary", "Exceptional", "Advanced", "Skilled", "Intermediate", "Below Average", "Beginner"]
+    tier_labels = [
+        "Legendary",
+        "Exceptional",
+        "Advanced",
+        "Skilled",
+        "Intermediate",
+        "Below Average",
+        "Beginner",
+    ]
     cluster_id_to_tier = {}
     tier_profiles = {}
 
@@ -137,8 +169,12 @@ def assign_tiers_and_rank_teams(
         )
 
         placement_explanation = generate_placement_explanation(
-            team, tier_profiles[tier], feature_importance, team_vector, 
-            cluster_centers_original[cluster_id], tier
+            team,
+            tier_profiles[tier],
+            feature_importance,
+            team_vector,
+            cluster_centers_original[cluster_id],
+            tier,
         )
 
         results.append(
@@ -149,9 +185,7 @@ def assign_tiers_and_rank_teams(
                 "Cluster_ID": int(cluster_id),
                 "Features": {
                     "Elo_Rating": team["Elo_Rating"],
-                    "Win_Rate": round(
-                        team["Win_Rate"], 2
-                    ),
+                    "Win_Rate": round(team["Win_Rate"], 2),
                     "Total_Matches": team["Total_Matches"],
                 },
                 "Tier_Profile": tier_profiles[tier],
@@ -176,8 +210,24 @@ def assign_tiers_and_rank_teams(
             distance = np.linalg.norm(features - cluster_center)
             team["Cluster_Distance"] = round(distance, 2)
 
-    tier_order = {tier: i for i, tier in enumerate(["Legendary", "Exceptional", "Advanced", "Skilled", "Intermediate", "Below Average", "Beginner"])}
-    results.sort(key=lambda x: (tier_order[x["Tier"]], x["Distance_From_Best"], x["Cluster_Distance"]))
+    tier_order = {
+        tier: i
+        for i, tier in enumerate(
+            [
+                "Legendary",
+                "Exceptional",
+                "Advanced",
+                "Skilled",
+                "Intermediate",
+                "Below Average",
+                "Beginner",
+            ]
+        )
+    }
+    for team in results:
+        team["Weighted_Score"] = compute_weighted_score(team, feature_importance)
+
+    results.sort(key=lambda x: (tier_order[x["Tier"]], -x["Weighted_Score"]))
 
     current_tier = None
     rank_within_tier = 0

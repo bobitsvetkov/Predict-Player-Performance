@@ -12,7 +12,6 @@ def load_data(input_file):
     Returns:
         pd.DataFrame: Loaded DataFrame.
     """
-    # input_file = os.path.abspath(input_file)
     df = pd.read_json(input_file)
     return df
 
@@ -33,23 +32,18 @@ def preprocess_data(input_file):
     df = load_data(input_file)
     df.fillna(0, inplace=True)
 
-    # Calculate skill and normalize
     skill = df["K/D ratio"] * df["Chevrons/game"]
     skill_norm = skill / skill.max()
 
-    # Normalize Win % and Playoff Rate
     win_norm = df["Win %"] / df["Win %"].max()
     playoff_rate = df["Playoff Rate"] / df["Playoff Rate"].max()
 
-    # Calculate penalty
     penalty = ((skill_norm - win_norm - playoff_rate).clip(lower=0) ** 2) * 1.5
 
-    # Calculate Battle_Performance
     df["Battle_Performance"] = (
         5 * skill_norm + 10 * win_norm + 5 * playoff_rate - 10 * penalty
     )
 
-    # Normalize Battle_Performance to a 0-100 scale
     min_score = df["Battle_Performance"].min()
     max_score = df["Battle_Performance"].max()
     df["Battle_Performance"] = (
@@ -57,13 +51,11 @@ def preprocess_data(input_file):
     ) * 100
     df["Battle_Performance"] = df["Battle_Performance"].clip(lower=0, upper=100)
 
-    # Create interaction features
     df["Win_Playoff_Interaction"] = (df["Win %"] * 100) * (df["Playoff Rate"] * 100)
     df["Playoff_Championship_Interaction"] = (
         df["Playoff Appearances"] * df["Championships"]
     )
 
-    # Define features to be used for modeling
     features = [
         "Chevrons/game",
         "Win %",
