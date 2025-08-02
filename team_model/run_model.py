@@ -51,9 +51,6 @@ def create_tier_classification_pipeline(
         print("Analyzing tier placements...")
         tiered_teams = analyze_tier_placement(tiered_teams)
 
-        # print("Refining team tiers based on confidence...")
-        # tiered_teams = refine_team_tiers(tiered_teams)
-
         print("Identifying potential outliers...")
         outliers = find_potential_outliers(tiered_teams)
         if outliers:
@@ -88,7 +85,7 @@ def run_model():
     if results:
         print_tier_summary(results)
 
-        print(f"\nClustering results saved to 'data/team_tiers.json'")
+        print("Clustering results saved to 'data/team_tiers.json")
     else:
         print("Clustering pipeline failed to generate results")
 

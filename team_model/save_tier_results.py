@@ -40,7 +40,6 @@ def print_tier_summary(results: List[Dict[str, Any]]):
         
     print("\n=== TEAM TIER RANKINGS ===")
     
-    # Print feature importance first
     if results and "Feature_Importance" in results[0]:
         print("\n=== FEATURE IMPORTANCE ===")
         feature_importance = results[0]["Feature_Importance"]
@@ -48,7 +47,6 @@ def print_tier_summary(results: List[Dict[str, Any]]):
             feature_name = feature.replace("_", " ").title()
             print(f"{feature_name}: {importance*100:.1f}%")
     
-    # Print tier profiles
     print("\n=== TIER PROFILES (Average Values) ===")
     tier_profiles = {}
     for team in results:
@@ -64,25 +62,9 @@ def print_tier_summary(results: List[Dict[str, Any]]):
                   f"Win Rate={profile.get('Win_Rate', 0)*100:.1f}%, "
                   f"Matches={profile.get('Total_Matches', 0):.1f}")
 
-    # Group by tier
     tiers = {}
     for team in results:
         tier = team["Tier"]
         if tier not in tiers:
             tiers[tier] = []
         tiers[tier].append(team)
-
-    # Print each tier with detailed explanations
-    # for tier in tier_order:
-    #     if tier in tiers:
-    #         print(f"\n--- {tier} TIER ---")
-    #         for team in tiers[tier]:
-    #             print(
-    #                 f"{team['Rank_Within_Tier']:>2}. {team['Team_Name']:<25} "
-    #                 f"(Distance: {team['Distance_From_Best']:<6}, Elo: {team['Features']['Elo_Rating']:<7}, "
-    #                 f"Win Rate: {team['Features']['Win_Rate']:<5}%)"
-    #             )
-    #             if "Placement_Explanation" in team:
-    #                 print(f"    {team['Placement_Explanation']}")
-    #             print(f"    Analysis: {team['Placement_Analysis']}")
-    #             print()

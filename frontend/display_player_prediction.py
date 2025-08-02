@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-
 def display_player_prediction():
     df = pd.read_json("data/player_data.json")
 

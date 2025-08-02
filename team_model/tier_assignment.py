@@ -99,7 +99,6 @@ def compute_weighted_score(team, feature_importance):
 
 def assign_tiers_and_rank_teams(
     team_features: List[Dict[str, Any]],
-    X_scaled: np.ndarray,
     labels: np.ndarray,
     cluster_centers_scaled: np.ndarray,
     scaler: StandardScaler,

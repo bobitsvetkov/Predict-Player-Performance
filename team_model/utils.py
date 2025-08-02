@@ -23,7 +23,6 @@ def extract_team_features(team_data: Dict[str, Any]) -> Dict[str, Any]:
     """Extract features from team data"""
     elo_rating = round(team_data["Elo Rating"], 2)
 
-    # Calculate win rate from matches
     matches = team_data.get("Matches", [])
     win_rate = calculate_win_rate(matches)
 
